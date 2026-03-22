@@ -712,21 +712,18 @@ blockquote.quote-large {
 	
 </style>
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
 <script>
     const tg = window.Telegram.WebApp;
-    tg.ready(); // Сообщаем Telegram, что приложение готово
+    tg.ready();
 
     const startParam = tg.initDataUnsafe.start_param;
 
-    // ВРЕМЕННАЯ СТРОКА ДЛЯ ПРОВЕРКИ:
-    alert("Telegram передал параметр: " + startParam);
-
-    if (startParam === 'command') {
-        window.location.replace('./index2.html'); // Добавил ./ для надежности пути
+    // Проверяем, что параметр передан И что это не 'index' (защита от бесконечного цикла)
+    if (startParam && startParam !== 'index') {
+        // Динамически подставляем имя параметра в название файла
+        window.location.replace(`./${startParam}.html`);
     }
 </script>
 
