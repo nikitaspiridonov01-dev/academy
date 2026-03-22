@@ -714,23 +714,20 @@ blockquote.quote-large {
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <script>
-	// Инициализируем объект Telegram Web App
-	const tg = window.Telegram.WebApp;
+    const tg = window.Telegram.WebApp;
+    tg.ready(); // Сообщаем Telegram, что приложение готово
 
-	// Расширяем приложение на весь экран (опционально, но рекомендуется)
-	tg.expand();
+    const startParam = tg.initDataUnsafe.start_param;
 
-	// Получаем параметр startapp (внутри Mini App он называется start_param)
-	const startParam = tg.initDataUnsafe.start_param;
+    // ВРЕМЕННАЯ СТРОКА ДЛЯ ПРОВЕРКИ:
+    alert("Telegram передал параметр: " + startParam);
 
-	// Логика редиректа
-	// Если параметр равен 'command', перенаправляем на index2.html
-	if (startParam === 'command') {
-		// Используем replace(), чтобы текущая страница (index.html) 
-		// не сохранялась в истории браузера и кнопка "Назад" работала корректно
-		window.location.replace('index2.html');
-	}
+    if (startParam === 'command') {
+        window.location.replace('./index2.html'); // Добавил ./ для надежности пути
+    }
 </script>
 
 
